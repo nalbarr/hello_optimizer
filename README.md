@@ -12,7 +12,7 @@ def f(x):
 - Function find_min(f)
 `
 def find_min(f):
-    # incomplete
+    ''' finish implementation '''
     pass
 `
 
