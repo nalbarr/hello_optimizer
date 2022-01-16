@@ -1,12 +1,9 @@
-# NAA.
-# - hyperparameters as globals
-
 x_init = 151.0  # initial y guess
 n_epochs = 100  # number of iterations for algorithm
 alpha = 0.01  # learning rate
 y_min_threshold = 0.00001  # early y_min threshold
 
-# Given
+# given
 def f(x):
     """
     - original polynomial expression:
@@ -21,7 +18,7 @@ def f(x):
     return 10.0 * (x - 2.0) ** 2.0 + 7.0
 
 
-# Solve
+# solve, implement
 def find_min(f):
     """
     - find y minimum by iterating using gradient descent:
@@ -44,8 +41,6 @@ def find_min(f):
             )
         )
 
-    # NA
-    # - my first mistake was mixing concepts of x steps versus y_new and cost function
     def x_step(x):
         x_new = x - (alpha * gradient(x))
         return x_new
@@ -66,9 +61,9 @@ def find_min(f):
     y_last = f(x_init)
     step_dir = 1.0
 
-    # iterate
     print("")
     print("*** start find_min() optimization.")
+
     for epoch in range(1, n_epochs):
         # compute y_new after x_new step
         x_new = step_dir * x_step(x_last)
@@ -78,16 +73,13 @@ def find_min(f):
 
         if y_new < y_last:
             x_last = x_new
-            step_dir = 1.0  # step same direction
-
             y_last = y_new  # assign y_new as new minimum
+            step_dir = 1.0  # step same direction
         elif y_new > y_last:
-            # x_last = x_new
             step_dir = -1.0  # step opposite direction, y_last
         elif y_min_reached(epoch, y_last, y_new, x_new):
             return epoch, x_new, y_new
 
-    # y_last after all epochs
     return epoch, x_new, y_new
 
 
@@ -104,32 +96,7 @@ def gradient(x):
     return (20.0 * x) - 40.0 - 0.0
 
 
-def y_loss(f, x):
-    """
-    - loss function
-    """
-    return f + (alpha * gradient(x))
-
-
 def main():
-    # NA
-    # - given
-    my_func = f(x_init)
-
-    print("type(x_init): {0}".format(type(x_init)))
-    print("type(f): {0}".format(type(f)))
-    print("type(my_func): {0}".format(type(my_func)))
-
-    # NA.
-    # - my_loss scope does not make sense here
-    # my_loss = y_loss(my_func, x)
-
-    # NA.
-    # - optimize iteratively with fixed epochs, function to optimize, and loss function
-    # - NOTE:hyper parameters are global as function limit to pass in 1 parameter as x.
-    # NA
-    # - NOTE: pass function type and not evaluated function (as float) !
-    # y_min = find_min(my_func)
     epochs_actual, x_new, y_min = find_min(f)
 
     print("After: {0} epochs".format(epochs_actual))
