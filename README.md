@@ -1,4 +1,4 @@
-# hello_optimizer
+# hello_optimizer_python
 
 A simple polynomial optimization using gradient descent.
 
