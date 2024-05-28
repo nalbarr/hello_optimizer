@@ -1,0 +1,21 @@
+[project]
+name = "hello_optimizer_python"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "nalbarr", email = ""},
+]
+dependencies = []
+requires-python = "==3.10.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project.scripts]
+hello-optimizer-python = "hello_optimizer_python.optimizer:main"
+
+[tool.pdm]
+distribution = true
